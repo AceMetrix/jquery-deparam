@@ -21,3 +21,4 @@ describe('jquery-deparam', function(){
         deparam(paramStr, true).should.deep.equal(paramsObj);
     });
 });
+
