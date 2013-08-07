@@ -10,7 +10,7 @@ bower install jquery-deparam
 ```
 or
 ```
-<script src="jquery-deparam.min.js"></script>
+<script src="jquery-deparam.js"></script>
 ```
 
 License
