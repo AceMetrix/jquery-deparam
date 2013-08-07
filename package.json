@@ -1,0 +1,27 @@
+{
+  "name": "jquery-deparam",
+  "version": "0.1.0",
+  "description": "Inverse of jQuery's $.param method to convert a querystring into a javascript object",
+  "main": "jquery-deparam.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AceMetrix/jquery-deparam.git"
+  },
+  "keywords": [
+    "jquery",
+    "deparam",
+    "param",
+    "querystring"
+  ],
+  "author": "Duncan Wong <baduncaduncan@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "chai": "~1.7.2",
+    "jquery": "~1.8.3"
+  }
+}

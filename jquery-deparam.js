@@ -1,12 +1,24 @@
-(function ($) {
-    $.deparam = function( params, coerce ) {
+(function(deparam){
+    if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
+        var jquery = require('jquery');
+        module.exports = deparam(jquery);
+    } else if (typeof define === 'function' && define.amd){
+        define(['jquery'], function(jquery){
+            return deparam(jquery);
+        });
+    } else {
+        var global = (false || eval)('this');
+        global.deparam = deparam(jQuery); // assume jQuery is in global namespace
+    }
+})(function ($) {
+    return function( params, coerce ) {
         var obj = {},
         coerce_types = { 'true': !0, 'false': !1, 'null': null };
 
         // Iterate over all name=value pairs.
         $.each( params.replace( /\+/g, ' ' ).split( '&' ), function(j,v){
             var param = v.split( '=' ),
-            key = decode( param[0] ),
+            key = decodeURIComponent( param[0] ),
             val,
             cur = obj,
             i = 0,
@@ -34,7 +46,7 @@
 
             // Are we dealing with a name=value pair, or just a name?
             if ( param.length === 2 ) {
-                val = decode( param[1] );
+                val = decodeURIComponent( param[1] );
 
                 // Coerce values.
                 if ( coerce ) {
@@ -90,4 +102,4 @@
 
         return obj;
     };
-})(jQuery);
+});
