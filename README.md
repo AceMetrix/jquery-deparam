@@ -6,7 +6,15 @@ Deparam is the inverse of jquery's [$.param method](http://api.jquery.com/jQuery
 
 ```javascript
 var paramStr = 'a[]=4&a[]=5&a[]=6&b[x][]=7&b[y]=8&b[z][]=9&b[z][]=0&b[z][]=true&b[z][]=false&b[z][]=undefined&b[z][]=&c=1';
-var paramsObj = { a:['4','5','6'], b:{x:['7'], y:'8', z:['9','0','true','false','undefined','']}, c:'1' };
+var paramsObj = {
+    a: ['4','5','6'],
+    b:{
+        x:['7'],
+        y:'8',
+        z:['9','0','true','false','undefined','']
+    },
+    c:'1'
+};
 
 deparam(paramStr).should.deep.equal(paramsObj);
 
