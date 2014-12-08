@@ -43,5 +43,21 @@ describe('jquery-deparam', function(){
             deparam(paramStr, true).should.deep.equal(paramsObj);
         });
     });
+    describe('legal parameter separators', function() {
+      it('deserializes ampersands', function() {
+        var paramStr = "foo=true&baz=false";
+        var paramsObj = { foo: true, baz: false };
+        deparam(paramStr, true).foo.should.be.a('boolean');
+        deparam(paramStr, true).baz.should.be.a('boolean');
+        deparam(paramStr, true).should.deep.equal(paramsObj);
+      });
+      it('deserializes semicolons', function() {
+        var paramStr = "foo=true;baz=false";
+        var paramsObj = { foo: true, baz: false };
+        deparam(paramStr, true).foo.should.be.a('boolean');
+        deparam(paramStr, true).baz.should.be.a('boolean');
+        deparam(paramStr, true).should.deep.equal(paramsObj);
+      });
+    });
 });
 
