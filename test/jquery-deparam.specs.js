@@ -20,6 +20,9 @@ describe('jquery-deparam', function(){
     it('serializes numbers when coerced', function(){
         deparam('prop=1234', true).prop.should.be.a('number');
     });
+    it('serializes big numbers as string when coerced', function(){
+        deparam('prop=999999999999999999', true).prop.should.be.a('string');
+    });
     it('serializes booleans into strings when without coercion', function(){
         deparam('prop=false').prop.should.be.a('string');
     });

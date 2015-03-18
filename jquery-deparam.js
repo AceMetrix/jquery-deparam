@@ -26,7 +26,10 @@
             // If key is more complex than 'foo', like 'a[]' or 'a[b][c]', split it
             // into its component parts.
             keys = key.split( '][' ),
-            keys_last = keys.length - 1;
+            keys_last = keys.length - 1,
+            // MAX_SAFE_INTEGER is ES6 feature. If number is larger than that, 
+            // then it shoul be represented as string
+            max_int = Number.MAX_SAFE_INTEGER || 9007199254740991;
 
             // If the first keys part contains [ and the last ends with ], then []
             // are correctly balanced.
@@ -50,10 +53,10 @@
 
                 // Coerce values.
                 if ( coerce ) {
-                    val = val && !isNaN(val) && val <= Number.MAX_SAFE_INTEGER ? +val              // number
-                    : val === 'undefined'             ? undefined         // undefined
-                    : coerce_types[val] !== undefined ? coerce_types[val] // true, false, null
-                    : val;                                                // string
+                    val = val && !isNaN(val) && +val <= max_int ? +val              // number
+                    : val === 'undefined'                       ? undefined         // undefined
+                    : coerce_types[val] !== undefined           ? coerce_types[val] // true, false, null
+                    : val;                                                          // string
                 }
 
                 if ( keys_last ) {
