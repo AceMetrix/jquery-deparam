@@ -50,7 +50,7 @@
 
                 // Coerce values.
                 if ( coerce ) {
-                    val = val && !isNaN(val) && val < Number.MAX_SAFE_INTEGER ? +val              // number
+                    val = val && !isNaN(val) && val <= Number.MAX_SAFE_INTEGER ? +val              // number
                     : val === 'undefined'             ? undefined         // undefined
                     : coerce_types[val] !== undefined ? coerce_types[val] // true, false, null
                     : val;                                                // string
