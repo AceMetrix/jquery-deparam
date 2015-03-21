@@ -1,9 +1,16 @@
 var should = require('chai').should();
+var jquery = require('jquery');
 var deparam = require('../jquery-deparam');
 
 describe('jquery-deparam', function(){
     it('loads through CommonJS', function(){
         require('../jquery-deparam').should.be.a('function');
+    });
+    it('is available through the jquery namespace', function(){
+      jquery.deparam.should.be.a('function');
+    });
+    it('is chainable through the jquery function', function(){
+      jquery('').deparam.should.be.a('function');
     });
     it('serializes strings', function(){
         deparam('prop=sillystring').prop.should.be.a('string');
@@ -44,4 +51,3 @@ describe('jquery-deparam', function(){
         });
     });
 });
-
