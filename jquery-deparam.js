@@ -1,4 +1,4 @@
-(function(deparam){
+(function(deparam, global){
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         var jquery = require('jquery');
         module.exports = deparam(jquery);
@@ -7,7 +7,6 @@
             return deparam(jquery);
         });
     } else {
-        var global = (false || eval)('this');
         global.deparam = deparam(jQuery); // assume jQuery is in global namespace
     }
 })(function ($) {
@@ -104,4 +103,4 @@
     };
     $.fn.deparam = $.deparam = deparam;
     return deparam;
-});
+}, this);
