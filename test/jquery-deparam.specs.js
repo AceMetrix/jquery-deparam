@@ -33,6 +33,10 @@ describe('jquery-deparam', function(){
     it('serializes numbers into strings when without coercion', function(){
         deparam('prop=1234').prop.should.be.a('string');
     });
+    it('parses any param name correctly including those of built in Object property names', function(){
+        deparam('hasOwnProperty=sillystring').hasOwnProperty.should.equal('sillystring');
+        deparam('prop[hasOwnProperty]=sillystring').prop.hasOwnProperty.should.equal('sillystring');
+    });
     describe('bbq specs', function(){
         it('deserializes 1.4-style params', function(){
             var paramStr = 'a[]=4&a[]=5&a[]=6&b[x][]=7&b[y]=8&b[z][]=9&b[z][]=0&b[z][]=true&b[z][]=false&b[z][]=undefined&b[z][]=&c=1';

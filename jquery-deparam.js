@@ -59,7 +59,7 @@
                 if ( keys_last ) {
                     // Complex key, build deep object structure based on a few rules:
                     // * The 'cur' pointer starts at the object top-level.
-                    // * [] = array push (n is set to array length), [n] = array if n is 
+                    // * [] = array push (n is set to array length), [n] = array if n is
                     //   numeric, otherwise object.
                     // * If at the last keys part, set the value.
                     // * For each keys part, if the current level is undefined create an
@@ -81,7 +81,7 @@
                         // val is already an array, so push on the next value.
                         obj[key].push( val );
 
-                    } else if ( obj[key] !== undefined ) {
+                    } else if ( {}.hasOwnProperty.call(obj, key) ) {
                         // val isn't an array, but since a second value has been specified,
                         // convert val into an array.
                         obj[key] = [ obj[key], val ];
