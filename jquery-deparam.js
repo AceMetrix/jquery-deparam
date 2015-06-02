@@ -50,10 +50,10 @@
 
                 // Coerce values.
                 if ( coerce ) {
-                    val = val && !isNaN(val)            ? +val              // number
-                    : val === 'undefined'             ? undefined         // undefined
-                    : coerce_types[val] !== undefined ? coerce_types[val] // true, false, null
-                    : val;                                                // string
+                    val = val && !isNaN(val) && ((+val + '') === val) ? +val        // number
+                    : val === 'undefined'                       ? undefined         // undefined
+                    : coerce_types[val] !== undefined           ? coerce_types[val] // true, false, null
+                    : val;                                                          // string
                 }
 
                 if ( keys_last ) {
