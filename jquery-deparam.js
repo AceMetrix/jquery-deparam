@@ -7,7 +7,12 @@
             return deparam(jquery);
         });
     } else {
-        var global = (false || eval)('this');
+        var global
+        try {
+          global = (false || eval)('this'); // best cross-browser way to determine global for < ES5
+        } catch (e) {
+          global = window; // fails only if browser (https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives)
+        }
         global.deparam = deparam(jQuery); // assume jQuery is in global namespace
     }
 })(function ($) {
