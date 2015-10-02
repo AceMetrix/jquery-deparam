@@ -45,7 +45,7 @@ define(['deparam'], function(deparam){});
 
 Notes
 ================
-`$.param({})`, `$.param([])`, and `$.param('')` serialize into empty strings.  This library will serialize that case into a string.
+`$.param({})`, `$.param([])`, and `$.param('')` serialize into empty strings.  This library will serialize those cases into an empty string.
 
 License
 ===============
