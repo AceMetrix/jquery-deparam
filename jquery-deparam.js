@@ -21,7 +21,7 @@
         coerce_types = { 'true': !0, 'false': !1, 'null': null };
 
         // Iterate over all name=value pairs.
-        $.each( params.replace( /\+/g, ' ' ).split( '&' ), function(j,v){
+        params.replace(/\+/g, ' ').split('&').forEach(function(v){
             var param = v.split( '=' ),
             key = decodeURIComponent( param[0] ),
             val,
@@ -82,7 +82,7 @@
                     // Simple key, even simpler rules, since only scalars and shallow
                     // arrays are allowed.
 
-                    if ( $.isArray( obj[key] ) ) {
+                    if ( Object.prototype.toString.call( obj[key] ) === '[object Array]' ) {
                         // val is already an array, so push on the next value.
                         obj[key].push( val );
 
@@ -107,6 +107,6 @@
 
         return obj;
     };
-    $.fn.deparam = $.deparam = deparam;
+    $.prototype.deparam = $.deparam = deparam;
     return deparam;
 });

@@ -9,9 +9,6 @@ describe('jquery-deparam', function(){
     it('is available through the jquery namespace', function(){
       jquery.deparam.should.be.a('function');
     });
-    it('is chainable through the jquery function', function(){
-      jquery('').deparam.should.be.a('function');
-    });
     it('serializes strings', function(){
         deparam('prop=sillystring').prop.should.be.a('string');
     });
