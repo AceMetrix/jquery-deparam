@@ -1,13 +1,9 @@
 var should = require('chai').should();
-var jquery = require('jquery');
 var deparam = require('../jquery-deparam');
 
 describe('jquery-deparam', function(){
     it('loads through CommonJS', function(){
         require('../jquery-deparam').should.be.a('function');
-    });
-    it('is available through the jquery namespace', function(){
-      jquery.deparam.should.be.a('function');
     });
     it('serializes strings', function(){
         deparam('prop=sillystring').prop.should.be.a('string');
@@ -36,6 +32,11 @@ describe('jquery-deparam', function(){
     it('parses any param name correctly including those of built in Object property names', function(){
         deparam('hasOwnProperty=sillystring').hasOwnProperty.should.equal('sillystring');
         deparam('prop[hasOwnProperty]=sillystring').prop.hasOwnProperty.should.equal('sillystring');
+    });
+    it('is available through the jquery namespace', function(){
+      deparam.addTojQuery();
+      var jquery = require('jquery');
+      jquery.deparam.should.be.a('function');
     });
     describe('bbq specs', function(){
         it('deserializes 1.4-style params', function(){
