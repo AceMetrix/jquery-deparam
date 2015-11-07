@@ -108,5 +108,19 @@
         return obj;
     };
     $.prototype.deparam = $.deparam = deparam;
+    deparam.addTojQuery = function() {
+        if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
+            var jquery = require('jquery');
+            jquery.prototype.deparam = jquery.deparam = deparam;
+        } else if (typeof define === 'function' && define.amd){
+            define(['jquery'], function(jquery){
+                jquery.prototype.deparam = jquery.deparam = deparam;
+            });
+        } else if (jQuery) {
+            // assume jQuery may be in global namespace
+            jQuery.prototype.deparam = jQuery.deparam = deparam;
+        }
+        return deparam;
+    }
     return deparam;
 });
