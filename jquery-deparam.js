@@ -1,19 +1,22 @@
 (function(deparam){
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
-        var jquery = require('jquery');
+        try {
+            var jquery = require('jquery');
+        } catch (e) {
+        }
         module.exports = deparam(jquery);
     } else if (typeof define === 'function' && define.amd){
         define(['jquery'], function(jquery){
             return deparam(jquery);
         });
     } else {
-        var global
+        var global;
         try {
           global = (false || eval)('this'); // best cross-browser way to determine global for < ES5
         } catch (e) {
           global = window; // fails only if browser (https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives)
         }
-        global.deparam = deparam(jQuery); // assume jQuery is in global namespace
+        global.deparam = deparam(global.jQuery); // assume jQuery is in global namespace
     }
 })(function ($) {
     var deparam = function( params, coerce ) {
@@ -107,6 +110,8 @@
 
         return obj;
     };
-    $.prototype.deparam = $.deparam = deparam;
+    if ($) {
+      $.prototype.deparam = $.deparam = deparam;
+    }
     return deparam;
 });
