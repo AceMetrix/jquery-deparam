@@ -23,6 +23,14 @@
         var obj = {},
         coerce_types = { 'true': !0, 'false': !1, 'null': null };
 
+        // If params is an empty string or otherwise falsy, return obj.
+        if (!params) {
+            return obj;
+        // Make sure the string does not start with a '?' character.
+        } else if (params.charAt(0) === '?') {
+            params = params.substr(1);
+        }
+
         // Iterate over all name=value pairs.
         params.replace(/\+/g, ' ').split('&').forEach(function(v){
             var param = v.split( '=' ),
