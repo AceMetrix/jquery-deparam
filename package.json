@@ -1,6 +1,6 @@
 {
   "name": "jquery-deparam",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Inverse of jQuery's $.param method to convert a querystring into a javascript object",
   "main": "jquery-deparam.js",
   "scripts": {
