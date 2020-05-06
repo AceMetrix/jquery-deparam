@@ -53,5 +53,15 @@ describe('jquery-deparam', function(){
             var paramsObj = { a:[1,2,3], b:4, c:[5,6,true,false,undefined,''], d:7 };
             deparam(paramStr, true).should.deep.equal(paramsObj);
         });
+        it('deserializes compatibly with bbq-sans-standaloneKeys', function(){
+            var paramStr = 'a=1&a&b=2&c=3&c=undefined&c=&d&e[a]=4&e[b]&e[c]=';
+            var paramsObj = { a:'', b:'2', c:['3','undefined',''], d:'', e:{a:'4',c:''}, 'e[b]':'' };
+            deparam(paramStr).should.deep.equal(paramsObj);
+        });
+        it('deserializes compatibly with coercion with bbq-sans-standaloneKeys', function(){
+            var paramStr = 'a=1&a&b=2&c=3&c=undefined&c=&d&e[a]=4&e[b]&e[c]=';
+            var paramsObj = { a:undefined, b:2, c:[3,undefined,''], d:undefined, e:{a:4,c:''}, 'e[b]':undefined };
+            deparam(paramStr, true).should.deep.equal(paramsObj);
+        });
     });
 });
