@@ -97,7 +97,7 @@
                     } else if ( {}.hasOwnProperty.call(obj, key) ) {
                         // val isn't an array, but since a second value has been specified,
                         // convert val into an array.
-                        obj[key] = [ obj[key], val ];
+                        obj[key] = obj[key] !== undefined ? [ obj[key], val ] : val;
 
                     } else {
                         // val is a scalar.
