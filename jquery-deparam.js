@@ -58,8 +58,9 @@
             }
 
             // Are we dealing with a name=value pair, or just a name?
-            if ( param.length === 2 ) {
-                val = decodeURIComponent( param[1] );
+            if ( param.length < 2 ) {
+                value = param.slice(1).join('='); // Suport when value has '=' character.
+                val = decodeURIComponent( value );
 
                 // Coerce values.
                 if ( coerce ) {

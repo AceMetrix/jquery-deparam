@@ -37,6 +37,9 @@ describe('jquery-deparam', function(){
         deparam('hasOwnProperty=sillystring').hasOwnProperty.should.equal('sillystring');
         deparam('prop[hasOwnProperty]=sillystring').prop.hasOwnProperty.should.equal('sillystring');
     });
+    it('parses base64 encoded value correctly', function(){
+        deparam('encodedProp=c2loeWVvbg==').hasOwnProperty.should.equal('c2loeWVvbg==');
+    });
     describe('bbq specs', function(){
         it('deserializes 1.4-style params', function(){
             var paramStr = 'a[]=4&a[]=5&a[]=6&b[x][]=7&b[y]=8&b[z][]=9&b[z][]=0&b[z][]=true&b[z][]=false&b[z][]=undefined&b[z][]=&c=1';
